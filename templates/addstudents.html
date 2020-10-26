@@ -1,0 +1,36 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Add students
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-inverse navbar-fixed-top nav-dark bg-dark">
+         <div class="container">
+              <ul class="nav navbar-nav">
+             <li><a href="{{ url_for('dashboard') }}">Back</a></li>
+             </ul>
+            </div>
+         </div>
+    </nav>
+
+<div class="container">
+
+  <form class="form-signin", method="POST", action="/addstudents">
+    <h2 class="form-signin-heading">Add students</h2>
+    {{ form.hidden_tag() }}
+    {{ wtf.form_field(form.Firstname) }}
+    {{ wtf.form_field(form.Lastname) }}
+    {{ wtf.form_field(form.Course) }}
+    {{ wtf.form_field(form.StudentID) }}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
+  </form>
+
+</div>
+{% endblock %}

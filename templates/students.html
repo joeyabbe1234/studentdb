@@ -1,0 +1,39 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+List of Students
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-inverse navbar-fixed-top nav-dark bg-dark">
+         <div class="container">
+              <ul class="nav navbar-nav">
+             <li><a href="{{ url_for('dashboard') }}">Back</a></li>
+             </ul>
+            </div>
+         </div>
+    </nav>
+{% include '_messages.html' %}
+            <table class="table table-striped">
+                <tr>
+              <th>StudentID</th>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Course</th>
+
+          </tr>
+                {% for row in studentdetails %}
+                <tr>
+                    <td>{{row['StudentID']}}</td>
+                    <td>{{row['Firstname']}}</td>
+                    <td>{{row['Lastname']}}</td>
+                    <td>{{row['Course']}}</td>
+
+                    <td width = "130">
+                        <a href="{{ url_for('edit') }}" class="btn btn-secondary btn-sn">edit</a>
+                        <a href="/delete/{{row['StudentID']}}" class="btn btn-danger btn-delete btn-sn">delete</a>
+                    </td>
+                </tr>
+                    {% endfor %}
+            </table>
+{% endblock %}
